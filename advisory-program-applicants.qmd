@@ -1,0 +1,80 @@
+---
+include-in-header:
+  - text: <script src="custom.js"></script>
+---
+
+# Advisory programme applicants
+```{python}
+#| tags: [parameters]
+
+applications_csv = 'advisory_student_applications.csv'
+```
+
+::: {.content-hidden unless-format="html"}
+
+<input type="text" id="ra_filter" onkeyup="filter_list()" placeholder="Filter research area">
+
+:::
+
+## Applicants
+
+```{python}
+#| output: asis
+import csv
+from IPython.display import display, Markdown
+
+with open(applications_csv, newline='') as csvfile:
+    application_reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    next(application_reader)
+    for applicant in application_reader:
+        display(Markdown(
+f"""
+::: {{.section-applicant}}
+
+### { applicant[1] } { applicant[2] }
+
+- University: { applicant[3] }
+- PI: { applicant[4] }
+- Research Area: { applicant[5] }
+- Began: { applicant[14] }
+- End (projected): { applicant[15] }
+- Species: { applicant[8] }
+- Data type: { applicant[7] }
+- Advisor skills: { applicant[9] }
+- Linux/Unix experience: { applicant[17] }
+    - HPC: { applicant[20] }
+    - Command line: { applicant[21] }
+- Programming experience: { applicant[18] }
+    - Custom code: { applicant[22] }
+- Coding Languages: { applicant[19] }
+
+#### Description
+
+{ applicant[6] }
+
+#### Available data
+
+{ applicant[10] }
+
+#### Planned data
+
+{ applicant[11] }
+
+#### Motivation
+
+{ applicant[12]}
+
+#### Courses
+
+{ applicant[23] }
+
+#### Additional info
+
+{ applicant[24] }
+
+:::
+"""
+        ))
+```
+
+

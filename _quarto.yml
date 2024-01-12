@@ -1,0 +1,17 @@
+project:
+  title: "Advisory programme applications"
+  type: default
+  output-dir: formatted
+
+date: today
+
+jupyter: python3
+execute:
+  echo: false
+
+format:
+  html:
+    theme: minty
+    toc: true
+  docx:
+    toc: true
