@@ -7,8 +7,12 @@ TODO:
 
 ## How to
 
-Make a compute environment with Jupyter, e.g.
-```
+<details>
+<summary>Make a compute environment with Quarto and Jupyter</summary>
+
+Example:
+
+```bash
 # Install Quarto using brew
 brew install --cask quarto
 
@@ -23,7 +27,10 @@ micromamba env create \
 micromamba activate quarto-env
 ```
 
+</details>
+
 After saving the applicants as a csv in the same folder, render the output.
+
 ```bash
 # 1) Get Quarto code
 git clone https://github.com/mahesh-panchal/quarto-format-advisory-applicants.git
