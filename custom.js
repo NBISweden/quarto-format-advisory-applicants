@@ -1,19 +1,47 @@
+// Read this JS file bottom to top! The code that runs
+// first is at the bottom, and each block calls functions
+// that are defined above it.
 
-// https://www.w3schools.com/howto/howto_js_filter_lists.asp
-function filter_list() {
-    // Declare variables
-    var input, applicants, rArea, i;
-    input = document.getElementById('ra_filter');
-    // filter = input.value.toUpperCase();
-    applicants = document.getElementById("applicants");
-
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < applicants.length; i++) {
-        rArea = applicants[i].getElementsByTagName("ul")[2].textContent
-        if (rArea.indexOf(input.value) > -1) {
-            applicants[i].style.display = "";
-        } else {
-            applicants[i].style.display = "none";
-        }
-    }
+// Accepts an array of DOM Nodes and resets them
+const showNodes = (nodes) => {
+  nodes.forEach(node => {
+    node.style.display = null
+  })
 }
+
+// Accepts an array of DOM Nodes and hides them
+const hideNodes = (nodes) => {
+  nodes.forEach(node => {
+    node.style.display = "none"
+  })
+}
+
+// This is a partially applied function; the first function
+// takes the input and applications and runs once when the
+// event listener is attached. The second function takes the
+// event and fires every time the keyup happens on the input.
+// We do this to avoid querying the dom (which remains stable)
+// on every keyup.
+const filterList = ({input, applicants}) => (e) => {
+  let match = input.value.toLowerCase()
+  showNodes(applicants)
+  if (match.length < 0) {
+    return
+  }
+  let misses = applicants.filter(node => {
+    return !node.textContent.toLowerCase().includes(match)
+  })
+  hideNodes(misses)
+}
+
+const init = () => {
+  const input = document.getElementById('ra_filter')
+  // [...Nodes] syntax turns a nodeList into an arry of nodes
+  // gives us iterator and array prototype functions like .map()
+  const applicants = [...document.querySelectorAll(".section-applicant")]
+  input.addEventListener('keyup', filterList({input, applicants}))
+}
+
+// Attach listener to the DOM to initialize
+// once the DOM is ready
+addEventListener("DOMContentLoaded", init);
