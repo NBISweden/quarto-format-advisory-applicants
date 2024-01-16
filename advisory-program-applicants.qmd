@@ -12,7 +12,7 @@ applications_csv = 'advisory_student_applications.csv'
 
 ::: {.content-hidden unless-format="html"}
 
-<input type="text" id="ra_filter" onkeyup="filter_list()" placeholder="Filter research area">
+<input type="text" id="ra_filter" onkeyup="filter_list()" placeholder="Filter applicants by keywords">
 
 :::
 
