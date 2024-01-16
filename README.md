@@ -39,7 +39,7 @@ Gitpod is a cloud development environment with everything installed that runs in
 <summary>Clone this repository locally.</summary>
 
 ```bash
-git clone https://github.com/mahesh-panchal/quarto-format-advisory-applicants.git
+git clone https://github.com/NBISweden/quarto-format-advisory-applicants.git
 ```
 
 </details>
